@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8">
+  <title>Docker Compose App</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 600px; margin: 40px auto; padding: 20px; }
+    button { background: #2E75B6; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; }
+    #result { margin-top: 20px; padding: 16px; background: #f4f4f4; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h1>🐳 Docker Compose веб апп</h1>
+  <p>Frontend → Backend → PostgreSQL</p>
+  <button onclick="checkHealth()">DB холболт шалгах</button>
+  <div id="result">Товч дарна уу...</div>
+  <script>
+    async function checkHealth() {
+      const res = await fetch('http://localhost:5000/health');
+      const data = await res.json();
+      document.getElementById('result').innerHTML =
+        `<b>Төлөв:</b> ${data.status} | <b>DB:</b> ${data.db}`;
+    }
+  </script>
+</body>
+</html>
